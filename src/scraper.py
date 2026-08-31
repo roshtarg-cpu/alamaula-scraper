@@ -40,30 +40,22 @@ async def scrape_alamaula(actor_input):
             proxy_url = f"http://auto:{proxy_password}@proxy.apify.com:8000"
             print('Using Apify proxy')
     
-    # Build search URL
-    base_url = 'https://www.alamaula.com.ar/search'
+    # Build search URL - Alamaula uses homepage for browse
+    # Search is client-side filtered via JS, so we scrape the homepage/category pages
+    base_url = 'https://www.alamaula.com.ar'
     params = {}
-    
-    # Add search query
-    if search_query:
-        params['sPattern'] = search_query
     
     # Add category path if specified
     category_path = CATEGORY_MAP.get(category, '')
     if category_path:
         base_url = f'https://www.alamaula.com.ar/{category_path}'
     
-    # Add price filters (only if not default)
-    if price_min > 0:
-        params['sPriceMin'] = str(price_min)
-    if price_max > 0 and price_max < 50000000:
-        params['sPriceMax'] = str(price_max)
+    # For search, we'll browse the category and filter client-side
+    # since the site's search endpoint doesn't work via direct URL
     
-    # DON'T add location filter - causes 404
-    # Location filtering happens via category pages
-    
-    search_url = f"{base_url}" if not params else f"{base_url}?{urlencode(params)}"
-    print(f'Search URL: {search_url}')
+    search_url = base_url
+    print(f'Browsing URL: {search_url}')
+    print(f'Will filter results for: {search_query if search_query else "all items"}')
     
     # Create HTTP client
     client_params = {
@@ -143,6 +135,11 @@ async def scrape_alamaula(actor_input):
                         # Title
                         if link:
                             item['title'] = link.get('aria-label', '').strip()
+                        
+                        # Filter by search query if specified
+                        if search_query and item.get('title'):
+                            if search_query.lower() not in item['title'].lower():
+                                continue
                         
                         # Price
                         price_elem = listing.find('span', class_='alc-price')

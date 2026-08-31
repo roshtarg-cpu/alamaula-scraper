@@ -10,32 +10,32 @@
       "template": "text"
     },
     "price": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Price (formatted)",
       "template": "text"
     },
     "priceCurrency": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Currency code (ARS, USD)",
       "template": "text"
     },
     "category": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Category path",
       "template": "text"
     },
     "condition": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Condition (Nuevo, Usado)",
       "template": "text"
     },
     "location": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Location",
       "template": "text"
     },
     "description": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Full description",
       "template": "text"
     },
@@ -53,27 +53,27 @@
       }
     },
     "sellerType": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Seller type (Particular, Empresa)",
       "template": "text"
     },
     "sellerName": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Seller name",
       "template": "text"
     },
     "sellerPhone": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Contact phone",
       "template": "text"
     },
     "postedDate": {
-      "type": ["string", "null"],
+      "type": "string",
       "description": "Posted date/time ago",
       "template": "text"
     },
     "photoCount": {
-      "type": ["integer", "null"],
+      "type": "integer",
       "description": "Number of photos",
       "template": "number"
     },

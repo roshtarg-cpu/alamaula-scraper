@@ -1,87 +1,12 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Alamaula Listing",
-  "type": "object",
+  "$schema": "https://apify.com/schemas/v1/output.ide.json",
   "actorOutputSchemaVersion": 1,
+  "title": "Alamaula Scraper Output",
   "properties": {
-    "title": {
+    "results": {
       "type": "string",
-      "description": "Listing title",
-      "template": "text"
-    },
-    "price": {
-      "type": "string",
-      "description": "Price (formatted)",
-      "template": "text"
-    },
-    "priceCurrency": {
-      "type": "string",
-      "description": "Currency code (ARS, USD)",
-      "template": "text"
-    },
-    "category": {
-      "type": "string",
-      "description": "Category path",
-      "template": "text"
-    },
-    "condition": {
-      "type": "string",
-      "description": "Condition (Nuevo, Usado)",
-      "template": "text"
-    },
-    "location": {
-      "type": "string",
-      "description": "Location",
-      "template": "text"
-    },
-    "description": {
-      "type": "string",
-      "description": "Full description",
-      "template": "text"
-    },
-    "url": {
-      "type": "string",
-      "description": "Listing URL",
-      "template": "link"
-    },
-    "images": {
-      "type": "array",
-      "description": "Image URLs",
-      "template": "list",
-      "items": {
-        "type": "string"
-      }
-    },
-    "sellerType": {
-      "type": "string",
-      "description": "Seller type (Particular, Empresa)",
-      "template": "text"
-    },
-    "sellerName": {
-      "type": "string",
-      "description": "Seller name",
-      "template": "text"
-    },
-    "sellerPhone": {
-      "type": "string",
-      "description": "Contact phone",
-      "template": "text"
-    },
-    "postedDate": {
-      "type": "string",
-      "description": "Posted date/time ago",
-      "template": "text"
-    },
-    "photoCount": {
-      "type": "integer",
-      "description": "Number of photos",
-      "template": "number"
-    },
-    "scrapedAt": {
-      "type": "string",
-      "description": "ISO timestamp of scraping",
-      "template": "text"
+      "title": "Results",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
     }
-  },
-  "required": ["title", "url", "scrapedAt"]
+  }
 }

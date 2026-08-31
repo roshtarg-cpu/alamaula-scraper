@@ -1,4 +1,5 @@
 {
+  "$schema": "https://apify.com/schemas/v1/actor.ide.json",
   "actorSpecification": 1,
   "name": "alamaula-scraper",
   "title": "Alamaula Scraper - Argentina Classifieds Data Extractor",
@@ -7,60 +8,10 @@
   "meta": {
     "templateId": "python-start"
   },
-  "input": "./input_schema.json",
-  "dockerfile": "./Dockerfile",
+  "inputSchema": "./input_schema.json",
+  "outputSchema": "./output_schema.json",
   "storages": {
-    "dataset": {
-      "actorSpecification": 1,
-      "views": {
-        "overview": {
-          "title": "Overview",
-          "transformation": {
-            "fields": [
-              "title",
-              "price",
-              "category",
-              "location",
-              "condition",
-              "url"
-            ]
-          },
-          "display": {
-            "component": "table",
-            "properties": {
-              "title": {
-                "label": "Title",
-                "format": "text"
-              },
-              "price": {
-                "label": "Price",
-                "format": "text"
-              },
-              "category": {
-                "label": "Category",
-                "format": "text"
-              },
-              "location": {
-                "label": "Location",
-                "format": "text"
-              },
-              "condition": {
-                "label": "Condition",
-                "format": "text"
-              },
-              "url": {
-                "label": "URL",
-                "format": "link"
-              }
-            }
-          }
-        }
-      }
-    }
+    "dataset": "./dataset_schema.json"
   },
-  "categories": [
-    "ECOMMERCE"
-  ],
-  "seoTitle": "Alamaula Scraper - Argentina Marketplace Data Extractor for AI Analysis",
-  "seoDescription": "Scrape classified listings from Alamaula.com.ar. Extract real estate, vehicles, services, jobs from Argentina's top marketplace. Perfect for market research, price tracking, AI-powered analysis. Compatible with Claude, ChatGPT & AI agents via Apify MCP."
+  "dockerfile": "./Dockerfile"
 }

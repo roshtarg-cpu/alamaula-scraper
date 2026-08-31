@@ -1,0 +1,27 @@
+{
+  "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+  "actorSpecification": 1,
+  "fields": {
+    "title": {"type": "string", "title": "Title"},
+    "price": {"type": "string", "title": "Price"},
+    "location": {"type": "string", "title": "Location"},
+    "condition": {"type": "string", "title": "Condition"},
+    "category": {"type": "string", "title": "Category"},
+    "url": {"type": "string", "title": "URL"}
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {"fields": ["title", "price", "location", "url"]},
+      "display": {
+        "component": "table",
+        "properties": {
+          "title": {"label": "Title", "format": "text"},
+          "price": {"label": "Price", "format": "text"},
+          "location": {"label": "Location", "format": "text"},
+          "url": {"label": "URL", "format": "link"}
+        }
+      }
+    }
+  }
+}

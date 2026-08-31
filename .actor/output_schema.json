@@ -1,72 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Alamaula Listing",
-  "type": "object",
-  "actorOutputSchemaVersion": 1,
-  "properties": {
-    "title": {
-      "type": "string",
-      "description": "Listing title"
+  "title": "Alamaula Listing Output",
+  "type": "array",
+  "description": "Array of classified listings from Alamaula.com.ar",
+  "items": {
+    "type": "object",
+    "properties": {
+      "title": {"type": "string"},
+      "price": {"type": ["string", "null"]},
+      "priceCurrency": {"type": ["string", "null"]},
+      "category": {"type": ["string", "null"]},
+      "condition": {"type": ["string", "null"]},
+      "location": {"type": ["string", "null"]},
+      "description": {"type": ["string", "null"]},
+      "url": {"type": "string"},
+      "images": {"type": "array", "items": {"type": "string"}},
+      "sellerType": {"type": ["string", "null"]},
+      "sellerName": {"type": ["string", "null"]},
+      "sellerPhone": {"type": ["string", "null"]},
+      "postedDate": {"type": ["string", "null"]},
+      "photoCount": {"type": ["integer", "null"]},
+      "scrapedAt": {"type": "string"}
     },
-    "price": {
-      "type": ["string", "null"],
-      "description": "Price (formatted)"
-    },
-    "priceCurrency": {
-      "type": ["string", "null"],
-      "description": "Currency code (ARS, USD)"
-    },
-    "category": {
-      "type": ["string", "null"],
-      "description": "Category path"
-    },
-    "condition": {
-      "type": ["string", "null"],
-      "description": "Condition (Nuevo, Usado)"
-    },
-    "location": {
-      "type": ["string", "null"],
-      "description": "Location"
-    },
-    "description": {
-      "type": ["string", "null"],
-      "description": "Full description"
-    },
-    "url": {
-      "type": "string",
-      "description": "Listing URL"
-    },
-    "images": {
-      "type": "array",
-      "description": "Image URLs",
-      "items": {
-        "type": "string"
-      }
-    },
-    "sellerType": {
-      "type": ["string", "null"],
-      "description": "Seller type (Particular, Empresa)"
-    },
-    "sellerName": {
-      "type": ["string", "null"],
-      "description": "Seller name"
-    },
-    "sellerPhone": {
-      "type": ["string", "null"],
-      "description": "Contact phone"
-    },
-    "postedDate": {
-      "type": ["string", "null"],
-      "description": "Posted date/time ago"
-    },
-    "photoCount": {
-      "type": ["integer", "null"],
-      "description": "Number of photos"
-    },
-    "scrapedAt": {
-      "type": "string",
-      "description": "ISO timestamp of scraping"
-    }
-  },
-  "required": ["title", "url", "scrapedAt"]
+    "required": ["title", "url", "scrapedAt"]
+  }
 }

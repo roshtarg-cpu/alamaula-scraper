@@ -3,6 +3,7 @@
   "title": "Alamaula Listing Output",
   "type": "array",
   "description": "Array of classified listings from Alamaula.com.ar",
+  "actorOutputSchemaVersion": 1,
   "items": {
     "type": "object",
     "properties": {

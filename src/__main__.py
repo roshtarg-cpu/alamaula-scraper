@@ -34,8 +34,8 @@ async def main():
         max_results = actor_input.get('maxResults', 10)
         proxy_config = actor_input.get('proxyConfiguration', {})
         
-        Actor.log.info(f'Starting Alamaula scraper for: {search_query}')
-        Actor.log.info(f'Category: {category}, Location: {location}, Max: {max_results}')
+        print(f'Starting Alamaula scraper for: {search_query}')
+        print(f'Category: {category}, Location: {location}, Max: {max_results}')
         
         # Setup proxy
         proxy_url = None
@@ -43,7 +43,7 @@ async def main():
             proxy_password = os.getenv('APIFY_PROXY_PASSWORD')
             if proxy_password:
                 proxy_url = f"http://auto:{proxy_password}@proxy.apify.com:8000"
-                Actor.log.info('Using Apify proxy')
+                print('Using Apify proxy')
         
         # Build search URL
         base_url = 'https://www.alamaula.com.ar/search'
@@ -65,7 +65,7 @@ async def main():
             params['sRegion'] = location
         
         search_url = f"{base_url}?{urlencode(params)}"
-        Actor.log.info(f'Search URL: {search_url}')
+        print(f'Search URL: {search_url}')
         
         # Create HTTP client
         client_params = {
@@ -94,25 +94,25 @@ async def main():
                 if page > 1:
                     page_url += f'&iPage={page}'
                 
-                Actor.log.info(f'Fetching page {page}: {page_url}')
+                print(f'Fetching page {page}: {page_url}')
                 
                 try:
                     response = await client.get(page_url)
                     response.raise_for_status()
                     
                     if response.status_code != 200:
-                        Actor.log.error(f'HTTP {response.status_code}')
+                        print(f'HTTP {response.status_code}')
                         break
                     
                     html = response.text
                     
                     # Check for error page
                     if 'currentLocation = \'error\'' in html:
-                        Actor.log.warning(f'Got error page on page {page}')
+                        print(f'Got error page on page {page}')
                         # Try direct search endpoint
                         if page == 1:
                             search_url = f'https://www.alamaula.com.ar/search?sPattern={quote_plus(search_query)}'
-                            Actor.log.info(f'Retrying with: {search_url}')
+                            print(f'Retrying with: {search_url}')
                             continue
                         break
                     
@@ -122,15 +122,15 @@ async def main():
                     listings = soup.find_all('article', class_='alc')
                     
                     if not listings:
-                        Actor.log.warning(f'No listings found on page {page}')
+                        print(f'No listings found on page {page}')
                         # Try alternative selector
                         listings = soup.find_all('article', class_=lambda x: x and 'alc' in x)
                     
                     if not listings:
-                        Actor.log.warning('No listings found with any selector')
+                        print('No listings found with any selector')
                         break
                     
-                    Actor.log.info(f'Found {len(listings)} listings on page {page}')
+                    print(f'Found {len(listings)} listings on page {page}')
                     
                     for listing in listings:
                         if len(results) >= max_results:
@@ -207,10 +207,10 @@ async def main():
                             # Only add if we have essential data
                             if item.get('title') and item.get('url'):
                                 results.append(item)
-                                Actor.log.info(f"Scraped: {item.get('title', '')[:50]}")
+                                print(f"Scraped: {item.get('title', '')[:50]}")
                         
                         except Exception as e:
-                            Actor.log.error(f'Error parsing listing: {e}')
+                            print(f'Error parsing listing: {e}')
                             continue
                     
                     # Check if there are more pages
@@ -223,20 +223,20 @@ async def main():
                     await asyncio.sleep(1)
                 
                 except httpx.HTTPStatusError as e:
-                    Actor.log.error(f'HTTP error: {e}')
+                    print(f'HTTP error: {e}')
                     break
                 except Exception as e:
-                    Actor.log.error(f'Error fetching page: {e}')
+                    print(f'Error fetching page: {e}')
                     break
         
         # Save results
-        Actor.log.info(f'Scraped {len(results)} items')
+        print(f'Scraped {len(results)} items')
         
         if results:
             await Actor.push_data(results)
-            Actor.log.info(f'✅ Successfully saved {len(results)} listings')
+            print(f'✅ Successfully saved {len(results)} listings')
         else:
-            Actor.log.warning('⚠️ No results found - check filters or site availability')
+            print('⚠️ No results found - check filters or site availability')
         
         await Actor.set_value('SAVED-TASK', {
             'searchQuery': search_query,

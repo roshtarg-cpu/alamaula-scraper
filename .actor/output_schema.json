@@ -1,28 +1,87 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Alamaula Listing Output",
-  "type": "array",
-  "description": "Array of classified listings from Alamaula.com.ar",
+  "title": "Alamaula Listing",
+  "type": "object",
   "actorOutputSchemaVersion": 1,
-  "items": {
-    "type": "object",
-    "properties": {
-      "title": {"type": "string"},
-      "price": {"type": ["string", "null"]},
-      "priceCurrency": {"type": ["string", "null"]},
-      "category": {"type": ["string", "null"]},
-      "condition": {"type": ["string", "null"]},
-      "location": {"type": ["string", "null"]},
-      "description": {"type": ["string", "null"]},
-      "url": {"type": "string"},
-      "images": {"type": "array", "items": {"type": "string"}},
-      "sellerType": {"type": ["string", "null"]},
-      "sellerName": {"type": ["string", "null"]},
-      "sellerPhone": {"type": ["string", "null"]},
-      "postedDate": {"type": ["string", "null"]},
-      "photoCount": {"type": ["integer", "null"]},
-      "scrapedAt": {"type": "string"}
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Listing title",
+      "template": "text"
     },
-    "required": ["title", "url", "scrapedAt"]
-  }
+    "price": {
+      "type": ["string", "null"],
+      "description": "Price (formatted)",
+      "template": "text"
+    },
+    "priceCurrency": {
+      "type": ["string", "null"],
+      "description": "Currency code (ARS, USD)",
+      "template": "text"
+    },
+    "category": {
+      "type": ["string", "null"],
+      "description": "Category path",
+      "template": "text"
+    },
+    "condition": {
+      "type": ["string", "null"],
+      "description": "Condition (Nuevo, Usado)",
+      "template": "text"
+    },
+    "location": {
+      "type": ["string", "null"],
+      "description": "Location",
+      "template": "text"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Full description",
+      "template": "text"
+    },
+    "url": {
+      "type": "string",
+      "description": "Listing URL",
+      "template": "link"
+    },
+    "images": {
+      "type": "array",
+      "description": "Image URLs",
+      "template": "list",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sellerType": {
+      "type": ["string", "null"],
+      "description": "Seller type (Particular, Empresa)",
+      "template": "text"
+    },
+    "sellerName": {
+      "type": ["string", "null"],
+      "description": "Seller name",
+      "template": "text"
+    },
+    "sellerPhone": {
+      "type": ["string", "null"],
+      "description": "Contact phone",
+      "template": "text"
+    },
+    "postedDate": {
+      "type": ["string", "null"],
+      "description": "Posted date/time ago",
+      "template": "text"
+    },
+    "photoCount": {
+      "type": ["integer", "null"],
+      "description": "Number of photos",
+      "template": "number"
+    },
+    "scrapedAt": {
+      "type": "string",
+      "description": "ISO timestamp of scraping",
+      "template": "text"
+    }
+  },
+  "required": ["title", "url", "scrapedAt"]
 }

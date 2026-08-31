@@ -15,6 +15,7 @@
           "url": {
             "type": "string",
             "title": "URL",
+            "description": "Alamaula URL to scrape",
             "pattern": "^https://.*alamaula\\.com\\.ar.*"
           }
         }

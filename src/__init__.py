@@ -1,0 +1,1 @@
+"""Alamaula scraper package."""

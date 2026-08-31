@@ -1,0 +1,79 @@
+{
+  "title": "Alamaula Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search Query",
+      "type": "string",
+      "description": "Search term to find listings (e.g., 'volkswagen', 'casa', 'notebook')",
+      "editor": "textfield",
+      "example": "volkswagen",
+      "prefill": "volkswagen"
+    },
+    "category": {
+      "title": "Category",
+      "type": "string",
+      "description": "Filter by category",
+      "editor": "select",
+      "enum": ["all", "real-estate", "vehicles", "services", "jobs"],
+      "enumTitles": ["All Categories", "Real Estate", "Vehicles", "Services", "Jobs"],
+      "default": "vehicles",
+      "prefill": "vehicles"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string",
+      "description": "Filter by location (e.g., 'Buenos Aires', 'Córdoba', 'Rosario')",
+      "editor": "textfield",
+      "example": "Buenos Aires",
+      "prefill": "Buenos Aires"
+    },
+    "priceMin": {
+      "title": "Minimum Price (ARS)",
+      "type": "integer",
+      "description": "Minimum price filter in Argentine Pesos",
+      "editor": "number",
+      "minimum": 0,
+      "default": 0,
+      "prefill": 0
+    },
+    "priceMax": {
+      "title": "Maximum Price (ARS)",
+      "type": "integer",
+      "description": "Maximum price filter in Argentine Pesos (0 = no limit)",
+      "editor": "number",
+      "minimum": 0,
+      "default": 50000000,
+      "prefill": 50000000
+    },
+    "condition": {
+      "title": "Condition",
+      "type": "string",
+      "description": "Filter by item condition",
+      "editor": "select",
+      "enum": ["all", "new", "used"],
+      "enumTitles": ["All", "New", "Used"],
+      "default": "all",
+      "prefill": "all"
+    },
+    "maxResults": {
+      "title": "Max Results",
+      "type": "integer",
+      "description": "Maximum number of listings to scrape",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000,
+      "default": 10,
+      "prefill": 10
+    },
+    "proxyConfiguration": {
+      "title": "Proxy Configuration",
+      "type": "object",
+      "description": "Proxy settings (optional - use Apify proxy if blocked)",
+      "editor": "proxy",
+      "prefill": { "useApifyProxy": false }
+    }
+  },
+  "required": ["searchQuery"]
+}

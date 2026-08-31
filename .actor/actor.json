@@ -1,0 +1,9 @@
+{
+  "actorSpecification": 1,
+  "name": "alamaula-scraper",
+  "title": "Alamaula Scraper",
+  "description": "Scrape Argentina classifieds from Alamaula.com.ar - vehicles, real estate, jobs, services with advanced filters",
+  "version": "1.0.0",
+  "input": "input_schema.json",
+  "dockerfile": "./Dockerfile"
+}

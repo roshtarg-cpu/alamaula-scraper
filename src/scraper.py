@@ -42,24 +42,27 @@ async def scrape_alamaula(actor_input):
     
     # Build search URL
     base_url = 'https://www.alamaula.com.ar/search'
-    params = {'sPattern': search_query}
+    params = {}
+    
+    # Add search query
+    if search_query:
+        params['sPattern'] = search_query
     
     # Add category path if specified
     category_path = CATEGORY_MAP.get(category, '')
     if category_path:
         base_url = f'https://www.alamaula.com.ar/{category_path}'
     
-    # Add price filters
+    # Add price filters (only if not default)
     if price_min > 0:
         params['sPriceMin'] = str(price_min)
     if price_max > 0 and price_max < 50000000:
         params['sPriceMax'] = str(price_max)
     
-    # Add location filter
-    if location:
-        params['sRegion'] = location
+    # DON'T add location filter - causes 404
+    # Location filtering happens via category pages
     
-    search_url = f"{base_url}?{urlencode(params)}"
+    search_url = f"{base_url}" if not params else f"{base_url}?{urlencode(params)}"
     print(f'Search URL: {search_url}')
     
     # Create HTTP client

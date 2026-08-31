@@ -1,0 +1,15 @@
+venv/
+storage/
+__pycache__/
+*.pyc
+*.pyo
+*.html
+*.json
+!.actor/*.json
+!package.json
+.DS_Store
+.vscode/
+.idea/
+*.log
+test_*.py
+explore_*.py

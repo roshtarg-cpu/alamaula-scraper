@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alamaula Listing",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Listing title"
+    },
+    "price": {
+      "type": ["string", "null"],
+      "description": "Price (formatted)"
+    },
+    "priceCurrency": {
+      "type": ["string", "null"],
+      "description": "Currency code (ARS, USD)"
+    },
+    "category": {
+      "type": ["string", "null"],
+      "description": "Category path"
+    },
+    "condition": {
+      "type": ["string", "null"],
+      "description": "Condition (Nuevo, Usado)"
+    },
+    "location": {
+      "type": ["string", "null"],
+      "description": "Location"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Full description"
+    },
+    "url": {
+      "type": "string",
+      "description": "Listing URL"
+    },
+    "images": {
+      "type": "array",
+      "description": "Image URLs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sellerType": {
+      "type": ["string", "null"],
+      "description": "Seller type (Particular, Empresa)"
+    },
+    "sellerName": {
+      "type": ["string", "null"],
+      "description": "Seller name"
+    },
+    "sellerPhone": {
+      "type": ["string", "null"],
+      "description": "Contact phone"
+    },
+    "postedDate": {
+      "type": ["string", "null"],
+      "description": "Posted date/time ago"
+    },
+    "photoCount": {
+      "type": ["integer", "null"],
+      "description": "Number of photos"
+    },
+    "scrapedAt": {
+      "type": "string",
+      "description": "ISO timestamp of scraping"
+    }
+  },
+  "required": ["title", "url", "scrapedAt"]
+}

@@ -1,0 +1,10 @@
+{
+  "startUrls": [
+    {"url": "https://www.alamaula.com.ar/"}
+  ],
+  "maxItems": 10,
+  "scrapeDetails": false,
+  "proxyConfiguration": {
+    "useApifyProxy": false
+  }
+}
